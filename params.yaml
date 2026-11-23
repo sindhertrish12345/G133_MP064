@@ -1,0 +1,40 @@
+# Settings for the MP064 canteen pipeline. Read with yaml.safe_load (see src/canteen/config.py).
+paths:
+  train: data/raw/train.csv
+  later: data/raw/later.csv
+  holdout: data/raw/holdout_features.csv
+  findings: reports/findings.yaml
+  data_issues: reports/data_issues.json
+  cleaning_rules: reports/cleaning_rules.json
+  monitoring_report: reports/monitoring.json
+  model: models/model.joblib
+  predictions: predictions/holdout_predictions.csv
+
+data:
+  id_column: record_id
+  date_column: date
+  target: plates_sold
+  group_column: block
+  numeric_features:
+    - students_on_campus
+    - menu_price_rs
+    - temp_c
+    - exam_days_left
+    - special_dishes
+    - queue_minutes_yesterday
+  categorical_features:
+    - day_type
+    - block
+  # the real categories; spelling variants are mapped onto these
+  levels:
+    day_type: [weekday, saturday, holiday]
+    block: [A-Block, B-Block, Hostel]
+
+checks:
+  sentinel_candidates: [-1, -9, -99, -999, -9999, 9, 99, 999, 9999]
+  sentinel_min_count: 5
+  unit_factors: [10, 12, 60, 100, 1000]
+  unit_tolerance: 0.15
+  leak_corr_threshold: 0.98
+  stuck_min_days: 7
+  typo_ratio: 3.0          # target above typo_ratio x median is a candidate typo

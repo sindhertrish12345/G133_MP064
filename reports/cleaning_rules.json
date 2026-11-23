@@ -1,0 +1,69 @@
+{
+  "drop_columns": [],
+  "sentinel": {
+    "present": true,
+    "column": "exam_days_left",
+    "value": 999,
+    "count": 72
+  },
+  "stuck": {
+    "present": true,
+    "column": "menu_price_rs",
+    "start_date": "2026-03-24",
+    "end_date": "2026-04-09",
+    "value": 72.0
+  },
+  "unit": null,
+  "drop_duplicates": true,
+  "typos": false,
+  "levels": {
+    "day_type": [
+      "weekday",
+      "saturday",
+      "holiday"
+    ],
+    "block": [
+      "A-Block",
+      "B-Block",
+      "Hostel"
+    ]
+  },
+  "issues": {
+    "leaking_column": {
+      "present": false,
+      "column": null
+    },
+    "unit_mixup": {
+      "present": false,
+      "column": null,
+      "group_value": null,
+      "factor": null
+    },
+    "sentinel_value": {
+      "present": true,
+      "column": "exam_days_left",
+      "value": 999,
+      "count": 72
+    },
+    "duplicate_rows": {
+      "present": true,
+      "count": 25
+    },
+    "stuck_sensor": {
+      "present": true,
+      "column": "menu_price_rs",
+      "start_date": "2026-03-24",
+      "end_date": "2026-04-09",
+      "value": 72.0
+    },
+    "target_typos": {
+      "present": false,
+      "count": null
+    },
+    "spelling_variants": {
+      "present": false,
+      "column": null,
+      "true_levels": null
+    }
+  }
+}
