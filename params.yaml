@@ -1,9 +1,14 @@
-# Settings for the MP064 canteen pipeline (Stages 1 & 2: Trish + Mitaksh up to 23 Nov)
+# Settings for the MP064 canteen pipeline. Read with yaml.safe_load (see src/canteen/config.py).
 paths:
   train: data/raw/train.csv
+  later: data/raw/later.csv
+  holdout: data/raw/holdout_features.csv
+  findings: reports/findings.yaml
   data_issues: reports/data_issues.json
   cleaning_rules: reports/cleaning_rules.json
+  monitoring_report: reports/monitoring.json
   model: models/model.joblib
+  predictions: predictions/holdout_predictions.csv
 
 data:
   id_column: record_id
@@ -42,6 +47,7 @@ mlflow:
   validation_fraction: 0.2   # last 20% of cleaned train (by date) used for model selection
   random_state: 42
   # 6 settings are tried for v1; the lowest validation MAE becomes version 1
+  # (v2 re-selects among the same settings, validating inside the first 70% of later.csv)
   experiments:
     - {name: ridge, model: ridge, params: {alpha: 1.0}}
     - {name: rf_depth8, model: random_forest, params: {n_estimators: 200, max_depth: 8, min_samples_leaf: 3}}
@@ -49,3 +55,8 @@ mlflow:
     - {name: gbr_lr05, model: gradient_boosting, params: {n_estimators: 300, learning_rate: 0.05, max_depth: 3}}
     - {name: gbr_lr10, model: gradient_boosting, params: {n_estimators: 200, learning_rate: 0.10, max_depth: 4}}
     - {name: gbr_d2, model: gradient_boosting, params: {n_estimators: 400, learning_rate: 0.05, max_depth: 2}}
+
+monitoring:
+  psi_bins: 10
+  retrain_fraction: 0.70     # first 70% of later.csv (by date) goes into v2 training
+  promote_min_improvement: 0.05   # promote v2 only if MAE is at least 5% lower than v1
