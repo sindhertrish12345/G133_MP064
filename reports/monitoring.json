@@ -1,0 +1,52 @@
+{
+  "tracking": {
+    "experiment_name": "mp064-canteen-lunch-rush",
+    "best_run_id": "1253177a55834849987845e24a0211c9",
+    "registered_model_name": "mp064-plates-sold-regressor",
+    "champion_version": 2
+  },
+  "monitoring": {
+    "psi": {
+      "students_on_campus": 0.0739,
+      "menu_price_rs": 0.0089,
+      "temp_c": 0.0573,
+      "exam_days_left": 0.0397,
+      "special_dishes": 0.0214,
+      "queue_minutes_yesterday": 3.6266
+    },
+    "most_drifted_feature": "queue_minutes_yesterday",
+    "mae_by_group": {
+      "A-Block": 34.06,
+      "B-Block": 34.38,
+      "Hostel": 64.85
+    },
+    "worst_served_group": "Hostel",
+    "mae_v1_on_check": 43.93,
+    "mae_v2_on_check": 27.21,
+    "decision": "promote"
+  },
+  "mae_v1_on_later": 43.407292796745054,
+  "val_mae_v1": {
+    "ridge": 15.299,
+    "rf_depth8": 22.822,
+    "rf_depth14": 22.251,
+    "gbr_lr05": 16.797,
+    "gbr_lr10": 18.783,
+    "gbr_d2": 16.174
+  },
+  "v1_setting": "ridge",
+  "v2_setting": "gbr_d2",
+  "inner_val_mae_v2": {
+    "ridge": 35.533,
+    "rf_depth8": 44.436,
+    "rf_depth14": 43.899,
+    "gbr_lr05": 29.995,
+    "gbr_lr10": 32.009,
+    "gbr_d2": 29.175
+  },
+  "rows": {
+    "train_clean": 1000,
+    "later": 300,
+    "holdout_predictions": 250
+  }
+}
